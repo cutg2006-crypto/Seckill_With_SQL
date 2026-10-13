@@ -1,0 +1,28 @@
+spring:
+  application:
+    name:seckill-with-sql
+  data:
+    redis:
+      host: localhost
+      port: 6378
+      # password:   # 如果设置了密码
+      lettuce:
+        pool:
+          enabled: true
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/InitProject?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+
+  mybatis-plus:
+    global-config:
+      db-config:
+        logic-delete-field: isDelete
+        logic-delete-value: 1
+        logic-not-delete-value: 0
