@@ -2,6 +2,7 @@ package com.hzr.seckillwithsql.mapper;
 
 import com.hzr.seckillwithsql.model.entity.ProductData;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author Administrator
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @createDate 2026-10-13 21:16:51
  * @Entity generator.domain.ProductData
  */
+@Mapper
 public interface ProductDataMapper extends BaseMapper<ProductData> {
 
 }

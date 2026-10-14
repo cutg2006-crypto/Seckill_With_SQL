@@ -54,5 +54,10 @@ public class SeckillController {
 //        return  ResultUtils.error("这是一个占位符错误，一般情况下不应该看见它！");
 //    }
 
+    @GetMapping("/updatesql")
+    public BaseResponse<String> updateSql() {
+        return ResultUtils.success(productDataService.updateSql()); // 订单信息会持续被写入数据库，因而不需要数据库更新
+    }
+
 
 }

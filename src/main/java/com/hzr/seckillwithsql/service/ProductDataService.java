@@ -16,4 +16,6 @@ public interface ProductDataService extends IService<ProductData> {
     ProductResponse setProduct(@Valid ProductRequest productRequest);
 
     ProductResponse initSeckill(@Valid int productID);
+
+    String updateSql();
 }

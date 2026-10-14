@@ -36,7 +36,5 @@ public class ThrowUtils {
         throwIf(condition, new BusinessException(errorCode, message));
     }
 
-    public static void throwEx(ErrorCode errorCode){
-        throw new BusinessException(errorCode);
-    }
+
 }
