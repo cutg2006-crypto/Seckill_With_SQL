@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 public class OrderConsumer {
-    private static final String ORDER_QUEUE = "seckill:orders";
+    private static final String STOCK_KEY = "seckill:orders:";
 
     private final StringRedisTemplate redisTemplate ;
 
@@ -41,7 +41,7 @@ public class OrderConsumer {
         while (running) {
             try {
                 String json = redisTemplate.opsForList()
-                        .rightPop(ORDER_QUEUE, 3, TimeUnit.SECONDS);
+                        .rightPop(STOCK_KEY, 3, TimeUnit.SECONDS);
                 if (json != null) {
                     OrderData order = JSON.parseObject(json, OrderData.class);
                     orderDataService.processOrder(order);   // 核心：委托给 Service

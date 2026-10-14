@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 public class ProductDataServiceImpl extends ServiceImpl<ProductDataMapper, ProductData>
         implements ProductDataService{
 
+    private static final String STOCK_KEY   = "seckill:product:";
+
     @Resource
     private StringRedisTemplate redisTemplate;
 
@@ -60,8 +62,12 @@ public class ProductDataServiceImpl extends ServiceImpl<ProductDataMapper, Produ
 
         ThrowUtils.throwIf(existing == null, ErrorCode.FAILED_TO_INIT);
         String quantity = String.valueOf(existing.getQuantity());
-        redisTemplate.opsForValue().set("seckill:product:" + productID, quantity);
-        redisTemplate.opsForSet().add("seckill:product", String.valueOf(productID));
+
+        // 添加商品到秒杀活动
+        redisTemplate.opsForValue().set(STOCK_KEY + productID, quantity);
+
+        // 添加商品至秒杀活动集合
+        redisTemplate.opsForSet().add(STOCK_KEY, String.valueOf(productID));
 
         return new ProductResponse(productID, existing.getQuantity(), "商品秒杀活动初始化成功！");
     }
